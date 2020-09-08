@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>My tasks</h1>
+  <ul>
+    <% @tasks.each do |task| %>
+    <li>
+      <% if task.completed %>
+      ⭕️
+      <% else %>
+      ❌
+      <% end %>
+      <%= link_to task.title, task_path(task) %>
+      <%= link_to "🗑", task_path(task), method: :delete, data: { confirm: "Are you sure?"} %>
+    </li>
+    <% end %>
+  </ul>
+  <%= link_to '➕ new tasks', tasks_new_path %>
+</body>
+</html>
